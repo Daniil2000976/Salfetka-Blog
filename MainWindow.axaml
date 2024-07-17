@@ -1,0 +1,25 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" x:Class="SalfetkaBlog.Views.MainWindow"
+        Title="SalfetkaBlog">
+    <Design.DataContext>
+        <local:MainWindowViewModel />
+    </Design.DataContext>
+    <StackPanel>
+        <TextBlock Text="SalfetkaBlog" FontSize="20" Margin="10" HorizontalAlignment="Center"/>
+        <ListBox Items="{Binding Posts}" SelectedItem="{Binding SelectedPost}" Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Add" Command="{Binding AddCommand}" Margin="5"/>
+            <Button Content="Edit" Command="{Binding EditCommand}" Margin="5" IsEnabled="{Binding SelectedPost, Converter={StaticResource NullToBoolConverter}}"/>
+            <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="5" IsEnabled="{Binding SelectedPost, Converter={StaticResource NullToBoolConverter}}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
